@@ -9,7 +9,9 @@ void showArray(int* array, int arraySize)
         //Wyświetlanie kolejnego znaku w tablicy
         std::cout << array[i] << " ";
     }
-    //znak końca linii
+    //koniec wyswietlania
+    std::cout << '\n';
+    std::cout << "-----------------------------------";
     std::cout << '\n';
 }
 
@@ -132,14 +134,15 @@ int main()
 {
      //tworzenie tablicy
     int wielkoscTablicy;
-    std::cout << "Podaj wilekość kopca" << '\n';
+    std::cout << "Podaj wilekosc kopca" << '\n';
     std::cin >> wielkoscTablicy;
     int* stworzonaTablica = makeArray(wielkoscTablicy);
 
     //wypełnianie tablicy
     std::cout << "Podaj liczby" << '\n';
     instertToArray(stworzonaTablica, wielkoscTablicy);
-    
+    std::cout << "-----------------------------------" << '\n';
+
     //petla menu
     while (true) 
     {
