@@ -33,6 +33,7 @@ void showArray(int* array, int start, int stop)
 void bubbleSort(int* array, int arraySize)
 {
     int temp; // Zmienna tymczasowa używana do zamiany elementów
+    bool sorted; //zmienna sprawdzająca czy dokonano zamiany elemntów
 
     // Zewnętrzna pętla służąca do przeglądania tablicy
     for (int i = 0; i < arraySize; i++)
@@ -40,6 +41,7 @@ void bubbleSort(int* array, int arraySize)
         // Wewnętrzna pętla porównuje sąsiadujące elementy i zamienia je, jeśli jest to konieczne
         for (int j = 0; j < arraySize - 1; j++)
         {
+            sorted = false;
             //Sprawdzenie czy poprzedni elemnt jest większy niż nastepny element
             if (array[j] > array[j + 1])
             {
@@ -47,9 +49,15 @@ void bubbleSort(int* array, int arraySize)
                 temp = array[j + 1];
                 array[j + 1] = array[j];
                 array[j] = temp;
+                sorted = true;
             }
             //Wyświetlanie tablicy
             showArray(array, 0, arraySize - 1);
+        }
+        //sprawdzenie czy dokonano zmiany
+        if(!sorted)
+        {
+            return;
         }
     }
 }
