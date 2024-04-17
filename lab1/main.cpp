@@ -49,6 +49,8 @@ void insertSort(int* array, int arraySize)
             array[i] = array[minIndex]; // Przypisuje bieżący element na miejsce minimalnego elementu
             array[minIndex] = temp; // Przypisuje minimalny element na miejsce bieżącego elementu
         }
+        //Wyświetlanie tablicy
+        showArray(array, 0, arraySize - 1);
     }
 }
 
@@ -57,10 +59,10 @@ void bubbleSort(int* array, int arraySize)
     int temp; // Zmienna tymczasowa używana do zamiany elementów
 
     // Zewnętrzna pętla służąca do przeglądania tablicy
-    for (int i = 0; i < arraySize; ++i)
+    for (int i = 0; i < arraySize; i++)
     {
         // Wewnętrzna pętla porównuje sąsiadujące elementy i zamienia je, jeśli jest to konieczne
-        for (int j = 0; j < arraySize - 1; ++j)
+        for (int j = 0; j < arraySize - 1; j++)
         {
             //Sprawdzenie czy poprzedni elemnt jest większy niż nastepny element
             if (array[j] > array[j + 1])
@@ -70,6 +72,8 @@ void bubbleSort(int* array, int arraySize)
                 array[j + 1] = array[j];
                 array[j] = temp;
             }
+            //Wyświetlanie tablicy
+            showArray(array, 0, arraySize - 1);
         }
     }
 }
@@ -87,6 +91,7 @@ void selectSort(int* array, int arraySize)
             j++; // Przechodzi do następnego elementu
         }
         array[j-1] = temp; // Umieszcza bieżący element w odpowiedniej pozycji
+    showArray(array, 0, arraySize - 1);
     }
 }
 
