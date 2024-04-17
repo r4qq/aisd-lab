@@ -82,6 +82,10 @@ void selectSort(int* array, int arraySize)
 {
     // Pętla iteruje od przedostatniego elementu do pierwszego
     for (int i = arraySize - 2; i >= 0; i--) {
+        
+        //Wyświetlanie tablicy
+        showArray(array, 0, arraySize - 1);
+        
         int temp = array[i]; // Zmienna tymczasowa przechowuje bieżący element
         int j = i + 1; // Ustawia indeks pomocniczy na kolejny element po bieżącym
         // Pętla przechodzi przez pozostałe elementy większe od bieżącego elementu
@@ -91,7 +95,6 @@ void selectSort(int* array, int arraySize)
             j++; // Przechodzi do następnego elementu
         }
         array[j-1] = temp; // Umieszcza bieżący element w odpowiedniej pozycji
-    showArray(array, 0, arraySize - 1);
     }
 }
 
