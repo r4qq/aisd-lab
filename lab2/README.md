@@ -1,0 +1,1 @@
+![alt text](https://github.com/r4qq/aisd-lab/blob/main/lab2/wyniki.png?raw=true)
