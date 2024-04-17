@@ -16,8 +16,6 @@ void instertToArray(int* array, int arraySize)
         std::cin >> znak;
         array[i] = znak;
     }
-    //wstawienie znaku końca tablicy
-    array[arraySize] = '\0';
 }
 
 void showArray(int* array, int start, int stop)

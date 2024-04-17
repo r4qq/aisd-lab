@@ -4,20 +4,24 @@ void showArray(int* array, int arraySize)
 {
     for (int i = 0; i < arraySize; i++)
     {
+        //Wyświetlanie kolejnego znaku w tablicy
         std::cout << array[i] << " ";
     }
+    //znak końca linii
     std::cout << '\n';
 }
 
 int* makeArray(int x)
 {
-    int* newArray = new int[x + 1];
+    //tworzenie nowej tablicy dynamicznej
+    int* newArray = new int[x];
     return newArray;
 }
 
 void instertToArray(int* array, int arraySize)
 {
     int x;
+    //pętla pobierająca znaki z terminala
     for (int i = 0; i < arraySize; i++) {
         std::cin >> x;
         array[i] = x;
@@ -28,12 +32,14 @@ void instertToArray(int* array, int arraySize)
 
 void arrayPop(int* &array, int &arraySize)
 {
+    //pętla przesuwająca elementy o jeden w lewo 
     for (int i = 0; i < arraySize + 1; i++)
     {
         array[i] = array[i + 1];
     }
-    arraySize--;
-    array[arraySize] = '\0';
+    arraySize--; //zmniejszanie wielkośći tablicy o 1
+    array[arraySize] = '\0'; //znak końca talicy
+    array[arraySize + 1] = NULL; 
 }
 
 int main()
