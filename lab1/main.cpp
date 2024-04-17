@@ -104,8 +104,6 @@ void insertSort(int* array, int arraySize)
 
 void mergeSort(int tab[], int pom[], int poczatek, int koniec)
 {
-    // Warunek rekurencji: jeśli początek jest mniejszy od końca
-    
         // Obliczenie środka tablicy
         int srodek = (poczatek + koniec + 1) / 2;
 
