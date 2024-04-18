@@ -5,3 +5,4 @@
 4. (2) wynik funcji heapPop()
 5. (3) próba funcji heapSort()
 6. (4) wynik funkcji arrayPop() (pierwsze zadanie w pliku)
+7. (5) zakończenie programu
