@@ -4,7 +4,7 @@
 struct element 
 {
     int data;
-    struct element* nextElement;
+    struct element *nextElement;
 };
 
 void pushFront(element **head, int number)
@@ -26,7 +26,7 @@ void pushBack(element **head, int number)
     }
     else 
     {
-        element* currentElement = *head;
+        element *currentElement = *head;
 
         while (currentElement -> nextElement != NULL) 
         {
@@ -39,7 +39,7 @@ void pushBack(element **head, int number)
     }
 }
 
-void showList(element* head)
+void showList(element *head)
 {
     std::cout << '\n';
     if (head == NULL) 
@@ -59,7 +59,7 @@ void showList(element* head)
     std::cout << '\n';
 }
 
-int listSize(element* head)
+int listSize(element *head)
 {
     int counter = 0;
     if (head == NULL) 
@@ -68,7 +68,7 @@ int listSize(element* head)
     }
     else 
     {
-        element* currentElement = head;
+        element *currentElement = head;
         do 
         {
             counter++;
@@ -77,6 +77,95 @@ int listSize(element* head)
         while (currentElement != NULL);
     }
     return counter;
+}
+
+void pushByIndex(element **head, int number, int index)
+{
+    if (index == 0) 
+    {
+        pushFront(head, number);
+    }
+    else 
+    {
+        if (index == listSize(*head)) 
+        {
+            pushBack(head, number);
+        }
+        else 
+        {
+            element *currentElement = *head;
+            element *tmp;
+
+            int i = 0;
+            while (currentElement -> nextElement != NULL && i < index - 1)
+            {
+                currentElement = currentElement -> nextElement;
+                i++; 
+            }
+
+            tmp = currentElement -> nextElement;
+            
+            currentElement -> nextElement = new element[sizeof(element)];
+            currentElement -> nextElement -> data = number;
+            currentElement -> nextElement -> nextElement = tmp;
+        }
+    }
+}
+
+void popFront(element **head)
+{
+    element *tmp = NULL;
+    if (*head != NULL) 
+    {
+        tmp = (*head) -> nextElement;
+        delete *head;
+        *head = tmp;
+    }
+}
+
+void popBac(element **head)
+{
+    if (*head == NULL) 
+    {
+        *head = NULL;
+    }
+    else 
+    {
+        element *currentElement = *head;
+
+        while (currentElement -> nextElement -> nextElement == NULL) 
+        {
+            currentElement = currentElement -> nextElement;
+        }
+
+        delete currentElement -> nextElement;
+
+        currentElement -> nextElement = NULL;
+    }
+}
+
+void popByIndex(element **head, int index)
+{
+    if (index == 0) 
+    {
+        popFront(head);
+    }
+    else 
+    {
+        element *currentElement = *head;
+        element *tmp;
+
+        int i = 0;
+        while (currentElement -> nextElement != NULL && i < index - 1)
+        {
+            currentElement = currentElement -> nextElement;
+            i++; 
+        }
+
+        tmp = currentElement -> nextElement;
+        currentElement -> nextElement = tmp -> nextElement;
+        delete tmp;
+    }
 }
 
 int main()
