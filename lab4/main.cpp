@@ -3,27 +3,27 @@
 #include <iostream>
 
 // Struktura elementu listy
-struct element 
+struct element
 {
     int data;                    // Dane przechowywane w elemencie
-    struct element *nextElement; // Wskaźnik na następny element
+    struct element* nextElement; // Wskaźnik na następny element
 };
 
 // Funkcja dodająca element na początek listy
-void pushFront(element **head, int number)
-{   
+void pushFront(element** head, int number)
+{
     // Tworzenie nowego elementu
-    element *currentElement = new element[sizeof(element)];
+    element* currentElement = new element[sizeof(element)];
 
     // Inicjalizacja danych nowego elementu
-    currentElement -> data = number;
-    currentElement -> nextElement = (*head);
+    currentElement->data = number;
+    currentElement->nextElement = (*head);
     // Ustawienie nowego elementu jako początku listy
     *head = currentElement;
 }
 
 // Funkcja dodająca element na koniec listy
-void pushBack(element **head, int number)
+void pushBack(element** head, int number)
 {
     // Jeśli lista jest pusta, dodaj pierwszy element 
     if (*head == NULL)
@@ -31,178 +31,176 @@ void pushBack(element **head, int number)
         *head = new element[sizeof(element)];    // Alokacja pamięci na nowy element
 
         // Inicjalizacja danych pierwszego elementu
-        (*head) -> data = number;
-        (*head) -> nextElement = NULL;
+        (*head)->data = number;
+        (*head)->nextElement = NULL;
     }
-    else 
+    else
     {
         //W przeciwnym razie przejdź przez listę do ostatniego elementu
-        element *currentElement = *head;
+        element* currentElement = *head;
 
-        while (currentElement -> nextElement != NULL) 
+        while (currentElement->nextElement != NULL)
         {
-            currentElement = currentElement -> nextElement;
+            currentElement = currentElement->nextElement;
         }
 
-        currentElement -> nextElement = new element[sizeof(element)];    // Alokacja pamięci na nowy element za ostatnim elementem
+        currentElement->nextElement = new element[sizeof(element)];    // Alokacja pamięci na nowy element za ostatnim elementem
 
         // Inicjalizacja danych nowego ostatniego elementu
-        currentElement -> nextElement -> data = number;
-        currentElement -> nextElement -> nextElement = NULL;
+        currentElement->nextElement->data = number;
+        currentElement->nextElement->nextElement = NULL;
     }
 }
 
 // Funkcja wyświetlająca zawartość listy
-void showList(element *head)
+void showList(element* head)
 {
     std::cout << '\n';
 
     // Sprawdzenie, czy lista jest pusta
-    if (head == NULL) 
-    {   
+    if (head == NULL)
+    {
         std::cout << "Pusta lista" << '\n';
     }
-    else 
+    else
     {
-        element *currentElement = head;
-        do 
+        element* currentElement = head;
+        do
         {
-            std::cout << currentElement -> data << " ";
-            currentElement = currentElement -> nextElement;
-        }
-        while (currentElement != NULL);
+            std::cout << currentElement->data << " ";
+            currentElement = currentElement->nextElement;
+        } while (currentElement != NULL);
     }
     std::cout << '\n';
 }
 
 // Funkcja zwracająca liczbę elementów w liście
-int listSize(element *head)
+int listSize(element* head)
 {
     int counter = 0;
 
     // Jeżeli lista jes pusta, zwróć 0
-    if (head == NULL) 
+    if (head == NULL)
     {
         return 0;
     }
-    else 
+    else
     {
-        element *currentElement = head;
+        element* currentElement = head;
         //Zliczanie elementów w liście
-        do 
+        do
         {
             counter++;
-            currentElement = currentElement -> nextElement;
-        }
-        while (currentElement != NULL);
+            currentElement = currentElement->nextElement;
+        } while (currentElement != NULL);
     }
     return counter;
 }
 
 // Funkcja dodająca element na określoną pozycję w liście
-void pushByIndex(element **head, int number, int index)
+void pushByIndex(element** head, int number, int index)
 {
     //Jeśli indeks jest równy zero, dodaj element na początek listy
-    if (index == 0) 
+    if (index == 0)
     {
         pushFront(head, number);
     }
-    else 
+    else
     {
         //Jesli indeks jest równy wielkości listy, dodaj element na koniec listy
-        if (index == listSize(*head)) 
+        if (index == listSize(*head))
         {
             pushBack(head, number);
         }
-        else 
+        else
         {
             // Przejście do elementu o poprzednim indeksie
-            element *currentElement = *head;
-            element *tmp;
+            element* currentElement = *head;
+            element* tmp;
 
             int i = 0;
-            while (currentElement -> nextElement != NULL && i < index - 1)
+            while (currentElement->nextElement != NULL && i < index - 1)
             {
-                currentElement = currentElement -> nextElement;
-                i++; 
+                currentElement = currentElement->nextElement;
+                i++;
             }
 
-            tmp = currentElement -> nextElement;    // Wstawienie nowego elementu na określoną pozycję
-            
-            currentElement -> nextElement = new element[sizeof(element)];    // Alokacja pamięci na nowy element
+            tmp = currentElement->nextElement;    // Wstawienie nowego elementu na określoną pozycję
+
+            currentElement->nextElement = new element[sizeof(element)];    // Alokacja pamięci na nowy element
 
             // Inicjalizacja danych nowego elementu
-            currentElement -> nextElement -> data = number;
-            currentElement -> nextElement -> nextElement = tmp;
+            currentElement->nextElement->data = number;
+            currentElement->nextElement->nextElement = tmp;
         }
     }
 }
 
 // Funkcja usuwająca pierwszy element listy
-void popFront(element **head)
+void popFront(element** head)
 {
-    element *tmp = NULL;
-    
+    element* tmp = NULL;
+
     // Sprawdzenie, czy lista nie jest pusta
-    if (*head != NULL) 
+    if (*head != NULL)
     {
-        tmp = (*head) -> nextElement;    // Przypisanie następnego elementu po usuwanym do zmiennej tymczasowej
-        delete *head;    // Usunięcie pierwszego elementu listy
+        tmp = (*head)->nextElement;    // Przypisanie następnego elementu po usuwanym do zmiennej tymczasowej
+        delete* head;    // Usunięcie pierwszego elementu listy
         *head = tmp;    // Ustawienie głowy listy na następny element
     }
 }
 
 // Funkcja usuwająca ostatni element listy
-void popBack(element **head)
+void popBack(element** head)
 {
     // Sprawdzenie, czy lista jest pusta
-    if (*head == NULL) 
+    if (*head == NULL)
     {
         *head = NULL;
     }
-    else 
+    else
     {
-        element *currentElement = *head;
+        element* currentElement = *head;
 
-        while (currentElement -> nextElement -> nextElement == NULL) 
+        while (currentElement->nextElement->nextElement != NULL)
         {
             // Przesuwanie wskaźnika do przedostatniego elementu
-            currentElement = currentElement -> nextElement;
+            currentElement = currentElement->nextElement;
         }
 
         // Usunięcie ostatniego elementu
-        delete currentElement -> nextElement;
+        delete currentElement->nextElement;
 
         // Ustawienie wskaźnika ostatniego elementu na NULL, aby wskazywał na koniec listy
-        currentElement -> nextElement = NULL;
+        currentElement->nextElement = NULL;
     }
 }
 
 // Funkcja usuwająca element z listy na podanej pozycji
-void popByIndex(element **head, int index)
+void popByIndex(element** head, int index)
 {
     // Sprawdzenie, czy usuwany element jest pierwszym elementem listy
-    if (index == 0) 
+    if (index == 0)
     {
         popFront(head);    // Jeśli tak, użyj funkcji popFront do usunięcia pierwszego elementu
     }
-    else 
+    else
     {
-        element *currentElement = *head;
-        element *tmp;
+        element* currentElement = *head;
+        element* tmp;
 
         int i = 0;
         // Przeszukaj listę do momentu znalezienia elementu poprzedzającego usuwany
-        while (currentElement -> nextElement != NULL && i < index - 1)
+        while (currentElement->nextElement != NULL && i < index - 1)
         {
-            currentElement = currentElement -> nextElement;
-            i++; 
+            currentElement = currentElement->nextElement;
+            i++;
         }
 
-        tmp = currentElement -> nextElement;    // Zapisz wskaźnik na element do usunięcia
+        tmp = currentElement->nextElement;    // Zapisz wskaźnik na element do usunięcia
 
         // Usuń element z listy
-        currentElement -> nextElement = tmp -> nextElement;
+        currentElement->nextElement = tmp->nextElement;
         delete tmp;
     }
 }
@@ -222,11 +220,11 @@ void showMenu()
 
 int main()
 {
-    element *lista = nullptr;    // Tworzenie listy
+    element* lista = NULL;    // Tworzenie listy
     int wybor = -1;
 
     // Menu programu
-    while (wybor) 
+    while (wybor)
     {
         showMenu(); // Wyświetlnienie menu
         showList(lista);    // Wyświetlnie listy 
@@ -234,49 +232,47 @@ int main()
         std::cout << "Polecenie: ";
         std::cin >> wybor; // Pobranie polecenia
 
-        switch (wybor) 
+        switch (wybor)
         {
-            case 1:
-                int dataToAddFront;
-                std::cout << "Podaj liczbę: ";
-                std::cin >> dataToAddFront;
-                pushFront(&lista, dataToAddFront); 
-                break;
-            case 2:
-                int dataToAddBack;
-                std::cout << "Podaj liczbę: ";
-                std::cin >> dataToAddBack;
-                pushBack(&lista, dataToAddBack); 
-                break;
-            case 3:
-                int dataToAddAtIndex, index;
-                std::cout << "Podaj liczbę: ";
-                std::cin >> dataToAddAtIndex;
-                std::cout << "Podaj indeks: ";
-                std::cin >> index;
-                pushByIndex(&lista, dataToAddAtIndex, index);
-                break;
-            case 4:
-                popFront(&lista); 
-                break;
-            case 5:
-                popBack(&lista); 
-                break;
-            case 6:
-                int indexToRemove;
-                std::cout << "Podaj indeks: ";
-                std::cin >> indexToRemove;
-                popByIndex(&lista, indexToRemove); 
-                break;
-            case 0:
-                delete lista; // Usunięcie listy
-                exit(0);
-            default:
-                std::cout << "Nie ma takiego wyboru" << '\n';
-                break;
+        case 1:
+            int dataToAddFront;
+            std::cout << "Podaj liczbę: ";
+            std::cin >> dataToAddFront;
+            pushFront(&lista, dataToAddFront);
+            break;
+        case 2:
+            int dataToAddBack;
+            std::cout << "Podaj liczbę: ";
+            std::cin >> dataToAddBack;
+            pushBack(&lista, dataToAddBack);
+            break;
+        case 3:
+            int dataToAddAtIndex, index;
+            std::cout << "Podaj liczbę: ";
+            std::cin >> dataToAddAtIndex;
+            std::cout << "Podaj indeks: ";
+            std::cin >> index;
+            pushByIndex(&lista, dataToAddAtIndex, index);
+            break;
+        case 4:
+            popFront(&lista);
+            break;
+        case 5:
+            popBack(&lista);
+            break;
+        case 6:
+            int indexToRemove;
+            std::cout << "Podaj indeks: ";
+            std::cin >> indexToRemove;
+            popByIndex(&lista, indexToRemove);
+            break;
+        case 0:
+            delete lista; // Usunięcie listy
+            exit(0);
+        default:
+            std::cout << "Nie ma takiego wyboru" << '\n';
+            break;
         }
     }
-
-
     return 0;
 }

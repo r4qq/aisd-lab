@@ -1,3 +1,4 @@
+![alt text](https://github.com/r4qq/aisd-lab/blob/main/lab4/wynik.png?raw=true)
 1. Wstawienie elementu na początek listy.
 2. Wstawienie elementu na koniec listy.
 3. Wstawienie elementu w konkretne miejsce listy.
