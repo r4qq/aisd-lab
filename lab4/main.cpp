@@ -184,11 +184,11 @@ void showMenu()
 
 int main()
 {
-    element *lista;
+    element *lista = nullptr;
     int wybor = -1;
     int zmienna;
 
-    while (wybor != 0) 
+    while (wybor) 
     {
         showMenu();
         showList(lista); 
