@@ -190,7 +190,6 @@ int main()
 
     while (wybor) 
     {
-        showMenu();
         showList(lista); 
 
         std::cout << "Polecenie: ";
