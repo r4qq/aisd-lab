@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <cstdlib>
 #include <iostream>
 
 struct element 
@@ -123,7 +124,7 @@ void popFront(element **head)
     }
 }
 
-void popBac(element **head)
+void popBack(element **head)
 {
     if (*head == NULL) 
     {
@@ -168,8 +169,76 @@ void popByIndex(element **head, int index)
     }
 }
 
+void showMenu()
+{
+    std::cout << "1. Push an item to the head of the list" << '\n';
+    std::cout << "2. Push an item to the tail of the list" << '\n';
+    std::cout << "3. Push an item to specific index of the list" << '\n';
+    std::cout << "4. Pop an item from the head of the list" << '\n';
+    std::cout << "5. Pop an item from the tail of the list" << '\n';
+    std::cout << "6. Pop an item from the specific index of the list" << '\n';
+    std::cout << "0. Close the program" << '\n';
+    std::cout << "-------------------------------------------------" << '\n';
+
+}
+
 int main()
 {
+    element *lista;
+    int wybor = -1;
+    int zmienna;
+
+    while (wybor != 0) 
+    {
+        showMenu();
+        showList(lista); 
+
+        std::cout << "Polecenie: ";
+        std::cin >> wybor;
+
+        switch (wybor) 
+        {
+            case 1:
+                int dataToAddFront;
+                std::cout << "Podaj liczbę: ";
+                std::cin >> dataToAddFront;
+                pushFront(&lista, dataToAddFront); 
+                break;
+            case 2:
+                int dataToAddBack;
+                std::cout << "Podaj liczbę: ";
+                std::cin >> dataToAddBack;
+                pushBack(&lista, dataToAddBack); 
+                break;
+            case 3:
+                int dataToAddAtIndex, index;
+                std::cout << "Podaj liczbę: ";
+                std::cin >> dataToAddAtIndex;
+                std::cout << "Podaj indeks: ";
+                std::cin >> index;
+                pushByIndex(&lista, dataToAddAtIndex, index);
+                break;
+            case 4:
+                popFront(&lista); 
+                break;
+            case 5:
+                popBack(&lista); 
+                break;
+            case 6:
+                int indexToRemove;
+                std::cout << "Podaj indeks: ";
+                std::cin >> indexToRemove;
+                popByIndex(&lista, indexToRemove); 
+                break;
+            case 0:
+                delete lista;
+                exit(0);
+            default:
+                std::cout << "Nie ma takiego wyboru" << '\n';
+                break;
+        }
+    }
+
 
     return 0;
 }
