@@ -1,1 +1,0 @@
-![alt text](https://github.com/r4qq/aisd-lab/blob/main/lab5/wynik.png?raw=true)

@@ -3,54 +3,99 @@
 #include <random>
 #include <utility>
 
+void print_array(int* tab, int start, int end)
+{
+    for (int i = start; i <= end; i++)
+    {
+        std::cout << tab[i];
+
+        if (i < end)
+        {
+            std::cout << " ";
+        }
+    }
+    std::cout << '\n';
+}
+
 // Funkcja sortująca szybka (quicksort).
 void quicksort(int *tab, int left, int right)
 {
+    std::cout << "sprawdzana tablica: ";
+    print_array(tab, left, right);
+
+
     // Wybór indeksu środkowego elementu jako pivota.
     int pivotIndex = (int)((left + right)/2);
     int pivot = tab[pivotIndex];
+
+    // Wyświetlenie informacji o pivocie.
+    std::cout << "pivot: " << pivot << '\n';
+
     int i = left;
     int j = i;
 
-    // Wyświetlenie informacji o pivocie.
-    std::cout << "pivotIndex: " << pivotIndex << " " << "pivot: " << pivot << '\n';
     // Zamiana pivota z ostatnim elementem.
     tab[pivotIndex] = tab[right];
 
     // Pętla przechodząca przez elementy tablicy.
     while (i < right) 
     {
+        std::cout << "Stan Tablicy ";
+        print_array(tab, left, right);
+         // Informacja o aktualnie przeglądanym elemencie i indeksie j.
+        std::cout << "Wartosc i: " << i << " wartosc j: " << j << '\n';
+        
+        std::cout << "Czy: " << tab[i] << " < " << pivot << '\n';
         // Szukanie elementów mniejszych od pivota.
         if (tab[i] < pivot) 
         {
-            // Informacja o aktualnie przeglądanym elemencie i indeksie j.
-            std::cout << "Wartosc i " << i << " wartosc j " << j << '\n';
             // Zamiana miejscami elementów i j w tablicy.
-            std::cout << "Zamiana " << tab[i] << " " << tab[j]  << '\n';
+            std::cout << "Tak, zamiana " << tab[i] << " " << tab[j]  << '\n';
             std::swap(tab[i], tab[j]);
+            //Zwiększenie i i j
+            std::cout << "Zwieksz i, j" << '\n';
+            i++;
             j++;
         }
-        i++;
+        else 
+        {
+            std::cout << "Nie, zwieksz i" << '\n';
+            i++;
+        }
     }
 
     // Zamiana pivota z elementem na pozycji j.
     tab[right] = tab[j];
+    std::cout << "Zamiana pivota " << "(" << pivot << ")" <<  " na element na pozycji J " << "(" << tab[j] << ")" << '\n';
     tab[j] = pivot;
 
+    std::cout << "Sprawdzana tablica: " << '\n';
+    print_array(tab, left, right);
+
+    std::cout << "Czy czesc tablica na lewo od pivota ma wiecej niz 1 element?" << '\n';
     // Wywołanie rekurencyjne dla lewej części tablicy.
     if (left < j - 1) 
     {
-        std::cout << "-----------------" << '\n';
-        std::cout << "Rekursywne sortowanie prawej części" << '\n';
+        std::cout << "Taj, wykonaj dla lewej" << '\n';
+        std::cout << "-----------" << '\n';
         quicksort(tab, left, j - 1);
     }
+    else 
+    {
+        std::cout << "Nie" << '\n';
+    }
 
+    std::cout << "Czy czesc tablica na prawo od pivota ma wiecej niz 1 element?" << '\n';
     // Wywołanie rekurencyjne dla prawej części tablicy.
     if (j + 1 < right) 
     {
-        std::cout << "-----------------" << '\n';
-        std::cout << "Rekursywne sortowanie lewej części" << '\n';
+        std::cout << "Tak wykonaj dla prawej" << '\n';
+        std::cout << "-----------" << '\n';
         quicksort(tab, j + 1, right);
+    }
+    else 
+    {
+        std::cout << "Nie" << '\n';
     }
 }
 
@@ -61,7 +106,7 @@ int main()
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distr(0, 100);
 
-    int n = 10; // Rozmiar tablicy.
+    int n = 10; // Rozmiar tablicy .
     int tab[n]; // Deklaracja tablicy.
 
     // Wypełnienie tablicy losowymi liczbami.
