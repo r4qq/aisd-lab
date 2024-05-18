@@ -85,7 +85,7 @@ void quicksort(int *tab, int left, int right)
         std::cout << "Nie" << '\n';
     }
 
-    std::cout << "Czy czesc tablica na prawo od pivota ma wiecej niz 1 element?" << '\n';
+    std::cout << "Czy czesc tablicy na prawo od pivota ma wiecej niz 1 element?" << '\n';
     // Wywołanie rekurencyjne dla prawej części tablicy.
     if (j + 1 < right) 
     {
