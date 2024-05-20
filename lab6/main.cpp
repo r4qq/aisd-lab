@@ -76,6 +76,7 @@ void pushByPriority(element** head, int numberNew, int priorityNew)
             newElement->nextElement = currentElement->nextElement;
             currentElement->nextElement = newElement;
         }
+        delete newElement;
     }
 }
 
