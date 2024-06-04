@@ -1,2 +1,2 @@
 Wynik działania programu:
-![alt text](https://github.com/r4qq/aisd-lab/blob/main/lab6/wynik1.png)
+![alt text](https://github.com/r4qq/aisd-lab/blob/main/lab7/wynik1.png)
